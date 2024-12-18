@@ -1,0 +1,22 @@
+* {
+    background-color: #ffffff;
+    font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+    
+}
+
+.headerBlock {
+    color: #000000;
+    margin: auto;
+    margin-top: 3%;
+}
+
+body {
+    color: #000000;
+    /* margin: auto; */
+    margin-left: 5%;
+    margin-right: 5%;
+}
+
+input {
+    margin: 1%;
+}
