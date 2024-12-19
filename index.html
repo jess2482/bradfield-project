@@ -21,7 +21,71 @@
             </div>
         </div>
         <br>
-        <div class="form">
+        <table id="resultInputs">
+            <thead>
+                <tr>
+                    <th>Party</th>
+                    <th>Candidate</th>
+                    <th>First Preference</th>
+                    <th>TCP to Boele</th>
+                    <th>TCP to Liberal</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <th>Independent</th>
+                    <th>BOELE, Nicolette</th>
+                    <th><input name="firstPreference" placeholder="Votes" type="number" /></th>
+                    <th><input name="BoeleTCP" placeholder="Votes" type="number" /></th>
+                    <th><input name="LiberalTCP" placeholder="Votes" type="number" /></th>
+                </tr>
+                <tr>
+                    <th>Labor</th>
+                    <th>BRIGDEN, David Gordon</th>
+                    <th><input name="firstPreference" placeholder="Votes" type="number" /></th>
+                    <th><input name="BoeleTCP" placeholder="Votes" type="number" /></th>
+                    <th><input name="LiberalTCP" placeholder="Votes" type="number" /></th>
+                </tr>
+                <tr>
+                    <th>The Greens</th>
+                    <th>COUSINS, Martin</th>
+                    <th><input name="firstPreference" placeholder="Votes" type="number" /></th>
+                    <th><input name="BoeleTCP" placeholder="Votes" type="number" /></th>
+                    <th><input name="LiberalTCP" placeholder="Votes" type="number" /></th>
+                </tr>
+                <tr>
+                    <th>Independent</th>
+                    <th>KITSON, Janine</th>
+                    <th><input name="firstPreference" placeholder="Votes" type="number" /></th>
+                    <th><input name="BoeleTCP" placeholder="Votes" type="number" /></th>
+                    <th><input name="LiberalTCP" placeholder="Votes" type="number" /></th>
+                </tr>
+                <tr>
+                    <th>United Australia Party</th>
+                    <th>FLETCHER, Rob</th>
+                    <th><input name="firstPreference" placeholder="Votes" type="number" /></th>
+                    <th><input name="BoeleTCP" placeholder="Votes" type="number" /></th>
+                    <th><input name="LiberalTCP" placeholder="Votes" type="number" /></th>
+                </tr>
+                <tr>
+                    <th>Liberal</th>
+                    <th>FLETCHER, Paul</th>
+                    <th><input name="firstPreference" placeholder="Votes" type="number" /></th>
+                    <th><input name="BoeleTCP" placeholder="Votes" type="number" /></th>
+                    <th><input name="LiberalTCP" placeholder="Votes" type="number" /></th>
+                </tr>
+                <tr>
+                    <th>Pauline Hanson's One Nation</th>
+                    <th>LOWE, Michael</th>
+                    <th><input name="firstPreference" placeholder="Votes" type="number" /></th>
+                    <th><input name="BoeleTCP" placeholder="Votes" type="number" /></th>
+                    <th><input name="LiberalTCP" placeholder="Votes" type="number" /></th>
+                </tr>
+            </tbody>
+        </table>
+        <br>
+        <th><button type="button" onclick="return submitResults()">SUBMIT</button></th>
+        <!-- <div class="form">
             <h3>Results</h4>
             <div id="resultInputs">
                 <label>Candidate 1: </label><input id="result1" name="candidateresult" placeholder="Votes" type="number" /><br>
@@ -30,12 +94,6 @@
             </div>
             <br>
             <button type="button" onclick="return submitResults()">SUBMIT</button>
-        </div>
+        </div> -->
     </body>
 </html>
-
-<!-- NEXT: should have group for each candidate (everything linked together), for form validation
- i.e. for TCP -->
-<!-- generally, do rest of form (+ keep input onscreen when form submitted) -->
-<!-- maybe do form like this https://www.javascript-coder.com/javascript-form/javascript-submit-form-stay-on-page/ instead 
- also, this would help with needing to be able to submit booth code before results!! so do it with its own button, not form/submit -->
