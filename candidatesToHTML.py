@@ -41,16 +41,16 @@ with open('tempcandidates.csv') as file:
 htmlCode += '''
         <tr>
             <th></th>
-            <th>Invalid</th>
-            <th><input id="invalidVotes" name="firstPreference" placeholder="Votes" type="number" /></th>
+            <th>Informal</th>
+            <th><input id="formalVotes" name="firstPreference" placeholder="Votes" type="number" /></th>
         </tr>
         <tr>
             <th><br></th>
         </tr>
         <tr>
             <th></th>
-            <th>Total Valid</th>
-            <th><input id="totalValid" placeholder="Votes" type="number" /></th>
+            <th>Total Formal</th>
+            <th><input id="totalFormal" placeholder="Votes" type="number" /></th>
             <th><input id="totalBoeleTCP" placeholder="Votes" type="number" /></th>
             <th><input id="totalLiberalTCP" placeholder="Votes" type="number" /></th>
         </tr>
