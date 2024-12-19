@@ -39,6 +39,26 @@ with open('tempcandidates.csv') as file:
         </tr>'''
 
 htmlCode += '''
+        <tr>
+            <th></th>
+            <th>Invalid</th>
+            <th><input id="invalidVotes" name="firstPreference" placeholder="Votes" type="number" /></th>
+        </tr>
+        <tr>
+            <th><br></th>
+        </tr>
+        <tr>
+            <th></th>
+            <th>Total Valid</th>
+            <th><input id="totalValid" placeholder="Votes" type="number" /></th>
+            <th><input id="totalBoeleTCP" placeholder="Votes" type="number" /></th>
+            <th><input id="totalLiberalTCP" placeholder="Votes" type="number" /></th>
+        </tr>
+        <tr>
+            <th></th>
+            <th>Total</th>
+            <th><input id="fullTotal" placeholder="Votes" type="number" /></th>
+        </tr>
     </tbody>
 </table>'''
 
