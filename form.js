@@ -1,5 +1,23 @@
 
-function validateBoothCode() {
+function submitBoothCode() {
+    let code = document.getElementById('boothCode').value;
+    if (code.length == 0) {
+        alert('Enter a booth code');
+        return false;
+    }
+    if (validateBoothCode(code) == false) {
+        alert('Invalid booth code');
+        return false
+    }
+
+    // todo: get corresponding info for name/location
+    // (instead of showing booth code)
+    document.getElementById('boothName').innerHTML = 'Name: ' + code;
+    document.getElementById('boothLocation').innerHTML = 'Location: ' + code;
+    return false;
+}
+
+function validateBoothCode(code) {
     // todo
     return true;
 }

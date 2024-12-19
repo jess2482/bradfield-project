@@ -2,27 +2,34 @@
     <head>
         <link rel="stylesheet" href="form.css">
         <script src="form.js"></script>
-        <title>scrutineering form</title>
+        <title>Scrutineering Form</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
     </head>
     <body>
         <div class="headerBlock">
-            <h1>scrutineering form</h1>
+            <h1>Scrutineering Form</h1>
         </div>
         <div class="booth">
-            <form name="boothInfo" onsubmit="return validateBoothCode()" action="" method="post">
-                Booth code: <input id="boothCode" placeholder="Code" type="text">
+            <form name="boothInput" onsubmit="return submitBoothCode()" action="" method="post">
+                <label>Booth Code: </label><input id="boothCode" placeholder="Code" type="text">
                 <input type="submit" valid="Submit">
             </form>
+            <div id="boothInfo">
+                <h5>Your Booth</h5>
+                <p id="boothName">Name: </p>
+                <p id="boothLocation">Location: </p>
+            </div>
         </div>
+        <br>
         <div class="form">
             <h3>Results</h4>
             <div id="resultInputs">
-                <label>Candidate 1: </label><input id="result1" name="candidateresult" placeholder="Result" type="number" /><br>
-                <label>Candidate 2: </label><input id="result2" name="candidateresult" placeholder="Result" type="number" /><br>
+                <label>Candidate 1: </label><input id="result1" name="candidateresult" placeholder="Votes" type="number" /><br>
+                <label>Candidate 2: </label><input id="result2" name="candidateresult" placeholder="Votes" type="number" /><br>
                 <label>Total: </label><input id="total" name="totalresult" placeholder="Votes" type="number" /><br>
             </div>
-            <button type="button" onclick="return submitResults()">submit</button>
+            <br>
+            <button type="button" onclick="return submitResults()">SUBMIT</button>
         </div>
     </body>
 </html>
