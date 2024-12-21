@@ -1,7 +1,6 @@
 * {
     /* background-color: #ffffff; */
     font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
-    
 }
 
 .headerBlock {
@@ -19,7 +18,7 @@ body {
 
 input {
     margin: 1%;
-    width: 50%;
+    width: 70px;
 }
 
 p {
@@ -34,6 +33,10 @@ p {
     padding-left: 2%;
     padding-right: 2%;
     padding-bottom: 1%;
+}
+
+tr {
+    font-size: 90%;
 }
 
 tr:nth-child(even) {
