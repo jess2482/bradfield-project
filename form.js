@@ -34,7 +34,7 @@ function validateForm() {
     let total = parseInt(document.getElementById('total').value);
     let sum = 0;
 
-    const results = document.getElementsByName('candidateresult');
+    const results = document.getElementsByName('firstPreference');
     Array.from(results).forEach((input) => {
         let value = parseInt(input.value);
         if (value <= 0 || isNaN(value)) {

@@ -3,6 +3,15 @@
 import sys
 import subprocess
 
+partyAbbrvs = {
+    "Independent": "IND",
+    "Labor": "ALP",
+    "Liberal": "LIB",
+    "The Greens": "GRN",
+    "United Australia Party": "UAP",
+    "Pauline Hanson's One Nation": "ON"
+}
+
 if len(sys.argv) < 2:
     print(f'Usage: {sys.argv[0]} <file.csv>')
     sys.exit(1)
@@ -15,11 +24,10 @@ candidateData = subprocess.run(command, shell = True, executable="/bin/dash")
 htmlCode = '''<table id="resultInputs">
     <thead>
         <tr>
-            <th>Party</th>
             <th>Candidate</th>
-            <th>First Preference</th>
-            <th>TCP to Boele</th>
-            <th>TCP to Liberal</th>
+            <th>First<br>Preference</th>
+            <th>TCP to<br>Boele</th>
+            <th>TCP to<br>Liberal</th>
         </tr>
     </thead>
     <tbody>'''
@@ -27,12 +35,21 @@ htmlCode = '''<table id="resultInputs">
 with open('tempcandidates.csv') as file:
     for line in file:
         values = line.split(',')
-        party = values[2].strip()
-        name = f'{values[0]}, {values[1]}'
-        htmlCode += f'''
+        party = partyAbbrvs[values[2].strip()]
+        name = f'{values[0]}, {values[1][0]}.'
+
+        if 'boele' in name.lower() or party == 'LIB':
+            htmlCode += f'''
         <tr>
-            <th>{party}</th>
-            <th>{name}</th>
+            <th>{name}<br>({party})</th>
+            <th><input name="firstPreference" placeholder="Votes" type="number" /></th>
+            <th></th>
+            <th></th>
+        </tr>'''
+        else:
+            htmlCode += f'''
+        <tr>
+            <th>{name}<br>({party})</th>
             <th><input name="firstPreference" placeholder="Votes" type="number" /></th>
             <th><input name="BoeleTCP" placeholder="Votes" type="number" /></th>
             <th><input name="LiberalTCP" placeholder="Votes" type="number" /></th>
@@ -40,7 +57,6 @@ with open('tempcandidates.csv') as file:
 
 htmlCode += '''
         <tr>
-            <th></th>
             <th>Informal</th>
             <th><input id="formalVotes" name="firstPreference" placeholder="Votes" type="number" /></th>
         </tr>
@@ -48,14 +64,12 @@ htmlCode += '''
             <th><br></th>
         </tr>
         <tr>
-            <th></th>
             <th>Total Formal</th>
             <th><input id="totalFormal" placeholder="Votes" type="number" /></th>
             <th><input id="totalBoeleTCP" placeholder="Votes" type="number" /></th>
             <th><input id="totalLiberalTCP" placeholder="Votes" type="number" /></th>
         </tr>
         <tr>
-            <th></th>
             <th>Total</th>
             <th><input id="fullTotal" placeholder="Votes" type="number" /></th>
         </tr>

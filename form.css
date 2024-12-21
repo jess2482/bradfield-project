@@ -19,6 +19,7 @@ body {
 
 input {
     margin: 1%;
+    width: 50%;
 }
 
 p {
@@ -33,4 +34,12 @@ p {
     padding-left: 2%;
     padding-right: 2%;
     padding-bottom: 1%;
+}
+
+tr:nth-child(even) {
+    background-color: #dddddd;
+}
+
+th {
+    width: 5%;
 }
