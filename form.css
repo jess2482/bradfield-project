@@ -55,10 +55,10 @@ th {
 }
 
 button {
-    width: 80%;
+    width: 70%;
+    height: 5%;
     display: block;
     margin: auto;
-    /* text-align: centre; */
     color: #ffffff;
     background-color: #2050b1;
     border-color: #2050b1;
