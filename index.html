@@ -10,10 +10,8 @@
             <h1>Scrutineering Form</h1>
         </div>
         <div class="booth">
-            <form name="boothInput" onsubmit="return submitBoothCode()" action="" method="post">
-                <label>Booth Code: </label><input id="boothCode" placeholder="Code" type="text">
-                <input type="submit" valid="Submit">
-            </form>
+            <label>Booth Code: </label><input id="boothCode" placeholder="Code" type="text" onkeydown="return submitBoothCode()">
+            <br><br>
             <div id="boothInfo">
                 <h5>Your Booth</h5>
                 <p id="boothName">Name: </p>
@@ -76,9 +74,14 @@
                 <tr>
                     <th>Informal</th>
                     <th><input id="formalVotes" name="firstPreference" placeholder="Votes" type="number" /></th>
+                    <th></th>
+                    <th></th>
                 </tr>
                 <tr>
                     <th><br></th>
+                    <th></th>
+                    <th></th>
+                    <th></th>
                 </tr>
                 <tr>
                     <th>Total Formal</th>
@@ -89,10 +92,12 @@
                 <tr>
                     <th>Total</th>
                     <th><input id="fullTotal" placeholder="Votes" type="number" /></th>
+                    <th></th>
+                    <th></th>
                 </tr>
             </tbody>
         </table>
         <br>
-        <th><button type="button" onclick="return submitResults()">SUBMIT</button></th>
+        <button type="button" onclick="return submitResults()">SUBMIT</button>
     </body>
 </html>

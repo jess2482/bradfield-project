@@ -1,6 +1,22 @@
 
 function submitBoothCode() {
     let code = document.getElementById('boothCode').value;
+    if (code.length == 0 || validateBoothCode(code) == false) {
+        code = 'Not found'
+    }
+    // todo: get corresponding info for name/location
+    // (instead of showing booth code)
+    document.getElementById('boothName').innerHTML = 'Name: ' + code;
+    document.getElementById('boothLocation').innerHTML = 'Location: ' + code;
+}
+
+function validateBoothCode(code) {
+    // TODO: actually check that booth code exists (xor to go back to original code + check for match)
+    return true;
+}
+
+function submitResults() {
+    let code = document.getElementById('boothCode').value;
     if (code.length == 0) {
         alert('Enter a booth code');
         return false;
@@ -9,20 +25,6 @@ function submitBoothCode() {
         alert('Invalid booth code');
         return false
     }
-
-    // todo: get corresponding info for name/location
-    // (instead of showing booth code)
-    document.getElementById('boothName').innerHTML = 'Name: ' + code;
-    document.getElementById('boothLocation').innerHTML = 'Location: ' + code;
-    return false;
-}
-
-function validateBoothCode(code) {
-    // todo
-    return true;
-}
-
-function submitResults() {
     if (validateForm() == false) {
         return false;
     }
