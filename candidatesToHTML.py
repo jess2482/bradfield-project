@@ -33,32 +33,37 @@ htmlCode = '''<table id="resultInputs">
     <tbody>'''
 
 with open('tempcandidates.csv') as file:
+    id = 1
     for line in file:
         values = line.split(',')
         party = partyAbbrvs[values[2].strip()]
         name = f'{values[0]}, {values[1][0]}.'
 
-        if 'boele' in name.lower() or party == 'LIB':
-            htmlCode += f'''
+        htmlCode += f'''
         <tr>
             <td>{name}<br>({party})</td>
-            <td><input name="firstPreference" placeholder="Votes" type="number" /></td>
-            <td></td>
-            <td></td>
+            <td><input id="fp{id}" name="firstPreference" placeholder="Votes" type="number" /></td>
+            <td><input id="btcp{id}" class="TCP" name="BoeleTCP" placeholder="Votes" type="number" /></td>
+            <td><input id="ltcp{id}" class="TCP" name="LiberalTCP" placeholder="Votes" type="number" /></td>
         </tr>'''
-        else:
-            htmlCode += f'''
-        <tr>
-            <td>{name}<br>({party})</td>
-            <td><input name="firstPreference" placeholder="Votes" type="number" /></td>
-            <td><input class = "TCP" name="BoeleTCP" placeholder="Votes" type="number" /></td>
-            <td><input class = "TCP" name="LiberalTCP" placeholder="Votes" type="number" /></td>
-        </tr>'''
+
+        # if 'boele' in name.lower() or party == 'LIB':
+        #     htmlCode += f'''
+        #     <td></td>
+        #     <td></td>
+        # </tr>'''
+        # else:
+        #     htmlCode += f'''
+        #     <td><input id="btcp{id}" class="TCP" name="BoeleTCP" placeholder="Votes" type="number" /></td>
+        #     <td><input id="ltcp{id}" class="TCP" name="LiberalTCP" placeholder="Votes" type="number" /></td>
+        # </tr>'''
+
+        id += 1
 
 htmlCode += '''
         <tr>
             <td>Informal</td>
-            <td><input id="formalVotes" name="firstPreference" placeholder="Votes" type="number" /></td>
+            <td><input id="informalVotes" name="firstPreference" placeholder="Votes" type="number" /></td>
             <td></td>
             <td></td>
         </tr>
