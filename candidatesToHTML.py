@@ -41,37 +41,44 @@ with open('tempcandidates.csv') as file:
         if 'boele' in name.lower() or party == 'LIB':
             htmlCode += f'''
         <tr>
-            <th>{name}<br>({party})</th>
-            <th><input name="firstPreference" placeholder="Votes" type="number" /></th>
-            <th></th>
-            <th></th>
+            <td>{name}<br>({party})</td>
+            <td><input name="firstPreference" placeholder="Votes" type="number" /></td>
+            <td></td>
+            <td></td>
         </tr>'''
         else:
             htmlCode += f'''
         <tr>
-            <th>{name}<br>({party})</th>
-            <th><input name="firstPreference" placeholder="Votes" type="number" /></th>
-            <th><input name="BoeleTCP" placeholder="Votes" type="number" /></th>
-            <th><input name="LiberalTCP" placeholder="Votes" type="number" /></th>
+            <td>{name}<br>({party})</td>
+            <td><input name="firstPreference" placeholder="Votes" type="number" /></td>
+            <td><input class = "TCP" name="BoeleTCP" placeholder="Votes" type="number" /></td>
+            <td><input class = "TCP" name="LiberalTCP" placeholder="Votes" type="number" /></td>
         </tr>'''
 
 htmlCode += '''
         <tr>
-            <th>Informal</th>
-            <th><input id="formalVotes" name="firstPreference" placeholder="Votes" type="number" /></th>
+            <td>Informal</td>
+            <td><input id="formalVotes" name="firstPreference" placeholder="Votes" type="number" /></td>
+            <td></td>
+            <td></td>
         </tr>
         <tr>
-            <th><br></th>
+            <td><br></td>
+            <td></td>
+            <td></td>
+            <td></td>
         </tr>
         <tr>
-            <th>Total Formal</th>
-            <th><input id="totalFormal" placeholder="Votes" type="number" /></th>
-            <th><input id="totalBoeleTCP" placeholder="Votes" type="number" /></th>
-            <th><input id="totalLiberalTCP" placeholder="Votes" type="number" /></th>
+            <td>Total Formal</td>
+            <td><input id="totalFormal" placeholder="Votes" type="number" /></td>
+            <td><input id="totalBoeleTCP" placeholder="Votes" type="number" /></td>
+            <td><input id="totalLiberalTCP" placeholder="Votes" type="number" /></td>
         </tr>
         <tr>
-            <th>Total</th>
-            <th><input id="fullTotal" placeholder="Votes" type="number" /></th>
+            <td>Total</td>
+            <td><input id="fullTotal" placeholder="Votes" type="number" /></td>
+            <td></td>
+            <td></td>
         </tr>
     </tbody>
 </table>'''

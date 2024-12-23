@@ -29,33 +29,107 @@ function submitResults() {
         return false;
     }
     sendResultsToAPI();
+    alert('Form submitted: ' + document.getElementById('fullTotal').value() + ' total votes')
     return true;
 }
 
 function validateForm() {
-    let total = parseInt(document.getElementById('total').value);
-    let sum = 0;
-
-    const results = document.getElementsByName('firstPreference');
-    Array.from(results).forEach((input) => {
+    // all first pref + full total must be filled in
+    let firstPrefs = document.getElementsByName('firstPreference');
+    Array.from(firstPrefs).forEach((input) => {
         let value = parseInt(input.value);
-        if (value <= 0 || isNaN(value)) {
-            alert('All values must be filled out');
+        if (value < 0 || isNaN(value)) {
+            alert('All first preference values must be filled out');
             return false;
         }
-        sum += value;
-    })
-
-    if (sum != total) {
-        alert('Incorrect vote tally: ' + sum);
+    });
+    let fullTotal = parseInt(document.getElementById('fullTotal').value());
+    if (fullTotal <= 0 || isNaN(fullTotal)) {
+        alert('Total must be filled out');
         return false;
     }
+
+    // first prefs must sum to full total
+    let firstPrefSum = calculateSum('firstPreference');
+    if (firstPrefSum != fullTotal) {
+        alert('Incorrect vote tally: ' + firstPrefSum);
+        return false;
+    }
+
+    // first pref - informal must sum to total formal (if it exists)
+    let numInformal = parseInt(document.getElementById('formalVotes').value());
+    let totalFormal = parseInt(document.getElementById('totalFormal').value());
+    if (!isNaN(totalFormal) && (firstPrefSum - numInformal) != totalFormal) {
+        alert('Incorrect formal vote tally: ' + (firstPrefSum - numInformal));
+        return false;
+    }
+
+    // if TCP values included...
+    if (!includesTCP()) {
+        return true;
+    }
+    // each TCP column must add to total formal for column
+    if (!checkTCPsum('Boele') || !checkTCPsum('Liberal')) {
+        return false;
+    }
+    // TCP total valids must add to full total
+    let totalBoeleTCP = parseInt(document.getElementById('totalBoeleTCP').value());
+    let totalLiberalTCP = parseInt(document.getElementById('totalLiberalTCP').value());
+    if (isNaN(totalBoeleTCP) || isNaN(totalLiberalTCP)) {
+        alert('Invalid TCP total');
+        return false;
+    } else if ((totalBoeleTCP + totalLiberalTCP) != fullTotal) {
+        alert('TCP totals do not add to overall total');
+        return false;
+    }
+    return true;
 }
 
-function sendResultsToAPI() {
-    // todo
+function calculateSum(columnName) {
+    let fields = document.getElementsByName(columnName);
+    let sum = 0;
+    Array.from(fields).forEach((input) => {
+        let value = parseInt(input.value());
+        if (!isNaN(value)) {
+            sum += value;
+        }
+    });
+    return sum;
+}
+
+function checkTCPsum(name) {
+    let sum = calculateSum(name + 'TCP');
+    let total = parseInt(document.getElementById('total' + name + 'TCP').value());
+    if (sum == 0 || isNaN(total)) {
+        alert('Invalid TCP total');
+        return false;
+    } else if (sum != total) {
+        alert('Incorrect ' + name + ' total votes: ' + sum)
+        return false;
+    }
+    return true;
+}
+
+function includesTCP() {
+    let tcpFields = document.getElementsByClassName('TCP');
+    Array.from(tcpFields).forEach((input) => {
+        let value = parseInt(input.value());
+        if (!isNaN(value) && value > 0) {
+            return true;
+        }
+    });
+    return false;
+}
+
+// function sendResultsToAPI() {
+//     let table = document.getElementById('resultInputs');
+//     for (let row )
+// }
+
+function sendCandidateResultToAPI() {
     let resultsHeader = new Headers();
     resultsHeader.append("Content-Type", "application/json");
+
     // temp, do this better later
     let data = JSON.stringify({
         "boothCode": document.getElementById('boothCode').value,

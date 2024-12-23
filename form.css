@@ -50,8 +50,9 @@ tr:nth-child(even) {
     border-collapse: collapse;
 }
 
-th {
+td, th {
     width: 5%;
+    text-align: center;
 }
 
 button {
