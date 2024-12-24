@@ -47,17 +47,6 @@ with open('tempcandidates.csv') as file:
             <td><input id="ltcp{id}" class="TCP" name="LiberalTCP" placeholder="Votes" type="number" /></td>
         </tr>'''
 
-        # if 'boele' in name.lower() or party == 'LIB':
-        #     htmlCode += f'''
-        #     <td></td>
-        #     <td></td>
-        # </tr>'''
-        # else:
-        #     htmlCode += f'''
-        #     <td><input id="btcp{id}" class="TCP" name="BoeleTCP" placeholder="Votes" type="number" /></td>
-        #     <td><input id="ltcp{id}" class="TCP" name="LiberalTCP" placeholder="Votes" type="number" /></td>
-        # </tr>'''
-
         id += 1
 
 htmlCode += '''

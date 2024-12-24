@@ -4,7 +4,7 @@ function submitBoothCode() {
     if (code.length == 0 || validateBoothCode(code) == false) {
         code = 'Not found'
     }
-    // todo: get corresponding info for name/location
+    // TODO: get corresponding info for name/location
     // (instead of showing booth code)
     document.getElementById('boothName').innerHTML = 'Name: ' + code;
     document.getElementById('boothLocation').innerHTML = 'Location: ' + code;
@@ -17,11 +17,6 @@ function validateBoothCode(code) {
 
 function submitResults() {
     let resultsTable = createResultsTable();
-    console.log(resultsTable);
-
-    // sendResultsToAPI();
-    // return false;
-
     let code = document.getElementById('boothCode').value;
     if (code.length == 0) {
         alert('Enter a booth code');
@@ -51,12 +46,6 @@ function createResultsTable() {
     for (let i = 1; i <= numCandidates; i++) {
         candidate = table.rows[i].cells[0].innerHTML;
         firstPref = parseInt(document.getElementById('fp' + i).value);
-        // if (candidate.includes('BOELE, N.')) {
-        //     boeleTCP = firstPref;
-        //     liberalTCP = 0;
-        // } else if (candidate.includes('LIB')) {
-        //     boeleTCP = 0;
-        //     liberalTCP = firstPref;
         boeleTCP = parseInt(document.getElementById('btcp' + i).value);
         liberalTCP = parseInt(document.getElementById('ltcp' + i).value);
         results[i] = [candidate, firstPref, boeleTCP, liberalTCP];
@@ -85,7 +74,6 @@ function validateForm(results) {
     let informalIndex = numCandidates + 1;
     let formalIndex = numCandidates + 2;
     let totalIndex = numCandidates + 3;
-
     let firstPrefCol = 1;
     let boeleTCPcol = 2;
     let liberalTCPcol = 3;
