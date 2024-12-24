@@ -1,5 +1,8 @@
 #!/usr/bin/env python3
 
+# Given .csv file with information for all candidates, prints web form table HTML for Bradfield candidates
+# in order of position on ballot
+
 import sys
 import subprocess
 

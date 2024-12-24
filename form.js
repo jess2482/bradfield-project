@@ -1,17 +1,32 @@
+/*
+    Scrutineering form functionality - checks input and sends to database
+    Created: December 2024
+*/
 
 function submitBoothCode() {
     let code = document.getElementById('boothCode').value;
     if (code.length == 0 || validateBoothCode(code) == false) {
         code = 'Not found'
     }
-    // TODO: get corresponding info for name/location
-    // (instead of showing booth code)
-    document.getElementById('boothName').innerHTML = 'Name: ' + code;
-    document.getElementById('boothLocation').innerHTML = 'Location: ' + code;
+    document.getElementById('boothName').innerHTML = 'Name: ' + getBoothInfo(code)[0];
+    document.getElementById('boothLocation').innerHTML = 'Location: ' + getBoothInfo(code)[1];
+}
+
+function getBoothInfo(code) {
+    let csv = pollingPlaceInfo().split('\n');
+    for (let booth of csv) {
+        let info = booth.split(',');
+        if (info[0] == code) {
+            return [info[2], info[3]];
+        }
+    }
+    return ['Not found', 'Not found'];
 }
 
 function validateBoothCode(code) {
-    // TODO: actually check that booth code exists (xor to go back to original code + check for match)
+    if (getBoothInfo(code)[0] == 'Not found') {
+        return false;
+    }
     return true;
 }
 
@@ -205,4 +220,65 @@ function sendCandidateResultToAPI(candidate, firstPref, boeleTCP, liberalTCP) {
         .then(response => response.text())
         .then(result => alert(JSON.parse(result).body))
         .catch(error => console.log('error', error))
+}
+
+function pollingPlaceInfo() {
+    return `115,Asquith (Bradfield),Asquith Public School,3 Dudley St
+2011,Castle Cove,Castle Cove Public School,2 Kendall Rd
+108401,Central Sydney (Bradfield),TAFE NSW Ultimo Campus,2-10 Mary Ann St
+97589,Central Sydney BRADFIELD PPVC,TAFE NSW Ultimo Campus,2-10 Mary Ann St
+79987,Chatswood (Bradfield),The Meridian,658 Pacific Hwy
+58723,Chatswood BRADFIELD PPVC,The Meridian,658 Pacific Hwy
+56721,Chatswood West (Bradfield),Chatswood High School,24 Centennial Ave
+97898,Crows Nest BRADFIELD PPVC,Northside Conference Centre,Oxley St
+65455,EAV Bradfield PPVC,AEC National EAV Centre,10 Mort St
+108551,EAV COVID19 Bradfield PPVC,AEC National EAV2 Centre,10 Mort St
+194,Gordon,St John's Anglican Church Hall,754 Pacific Hwy
+195,Gordon East,Gordon East Public School,66-70 Rosedale Rd
+33948,Gordon PPVC,2nd Gordon Scout Hall,32C Rosedale Rd
+196,Gordon West,Gordon West Public School,146 Ryde Rd
+98115,Haymarket BRADFIELD PPVC,Sydney Masonic Centre,66 Goulburn St
+43833,Hornsby (Bradfield),TAFE NSW Hornsby (Northern Sydney Institute),205 Peats Ferry Rd
+65110,Hornsby BRADFIELD PPVC,TAFE NSW Hornsby (Northern Sydney Institute),205 Peats Ferry Rd
+127,Hornsby Central (Bradfield),Hornsby Girls High School,12 Edgeworth David Ave
+33771,Hornsby East,Salvation Army Hornsby,29-31 Burdett St
+82528,Hornsby West (Bradfield),Hornsby War Memorial Hall,2 High St
+97630,Killara,St Albans Anglican Church,1-3 Tryon Rd
+199,Killara East,Killara High School,35 Koola Ave
+98075,Lindfield,Korean Community Uniting Church,33 Tryon Rd
+97405,Lindfield Central,All Saints' Air Force Memorial Church West Lindfield,9 Moore Ave
+202,Lindfield East,Lindfield East Public School,90 Tryon Rd
+203,Lindfield North,Lindfield Public School,218 Pacific Hwy
+204,Lindfield West,Beaumont Road Public School,17 Beaumont Rd
+133,Normanhurst (Bradfield),Normanhurst Public School,2-12 Normanhurst Rd
+83551,North Wahroonga,1st East Wahroonga Scouts,26 Cliff Ave
+83679,Pennant Hills BRADFIELD PPVC,"1st Floor, 114 Yarrara Road"
+206,Pymble,Sacred Heart Parish Hall,1-5 Bobbin Head Rd
+137,Pymble North,Pymble Public School,30 Crown Rd
+207,Pymble West,West Pymble Public School,10 Apollo Ave
+208,Roseville,Roseville Uniting Church,7A Lord St
+210,Roseville East,Roseville Public School,19A Archbold Rd
+2032,Roseville South,St Barnabas' Anglican Church,30 William St
+211,St Ives,St Ives Community Hall,2 Memorial Ave
+212,St Ives Chase,St Ives North Scout Hall,161 Warrimoo Ave
+188,St Ives East,St Ives Park Public School,7 Acron Rd
+213,St Ives North,St Ives North Public School,87 Memorial Ave
+83553,St Ives PPVC,Shop 5 169 - 177 Mona Vale,Shop 5 169 - 177 Mona Vale Rd
+214,St Ives South,St Ives High School,67-69 Yarrabung Rd
+129,South Turramurra,Turramurra High School,104 Maxwell St
+142,South Turramurra Heights,Turramurra Public School,174 Kissing Point Rd
+108444,Special Hospital Team 1,UPA Sydney North Aged Care,1614-1634 Pacific Hwy
+108402,Sydney (Bradfield),York Events,Lvl 2 95-99 York St
+97606,Sydney BRADFIELD PPVC,York Events,Lvl 2 95-99 York St
+140,Turramurra Central,Northside Montessori School,42 Bobbin Head Rd
+141,Turramurra North,Turramurra North Public School,237 Bobbin Head Rd
+130,Turramurra Valley,Ku-ring-gai High School,403 Bobbin Head Rd
+143,Wahroonga,Wahroonga Presbyterian Church Hall,cnr Stuart St & Illoura Ave
+144,Wahroonga East,Wahroonga Public School,71 Burns Rd
+83552,Wahroonga South,St Lucy's School,21 Cleveland St
+145,Waitara,The Light of Christ Centre Hall,33 Yardley Ave
+125,Waitara North,PCYC Waitara,1 Park Lane
+147,Warrawee,Warrawee Public School,1486 Pacific Hwy
+97904,Willoughby BRADFIELD PPVC,Willoughby Uniting Church,10 Clanwilliam St
+    `
 }
