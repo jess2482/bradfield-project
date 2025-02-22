@@ -14,9 +14,10 @@ function submitBoothCode() {
 
 function getBoothInfo(code) {
     let csv = pollingPlaceInfo().split('\n');
+    let id = Math.floor((code ^ 692115) / 13);
     for (let booth of csv) {
         let info = booth.split(',');
-        if (info[0] == code) {
+        if (info[0] == id) {
             return [info[2], info[3]];
         }
     }
@@ -199,8 +200,10 @@ function sendCandidateResultToAPI(candidate, firstPref, boeleTCP, liberalTCP) {
     let resultsHeader = new Headers();
     resultsHeader.append("Content-Type", "application/json");
 
+    let code = document.getElementById('boothCode').value;
+    let id = Math.floor((parseInt(code) ^ 692115) / 13);
     let data = JSON.stringify({
-        "boothCode": document.getElementById('boothCode').value,
+        "boothId": id,
         "candidateName": candidate,
         "firstPreference": firstPref,
         "boeleTCP": boeleTCP,
