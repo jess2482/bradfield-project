@@ -223,10 +223,16 @@ function sendCandidateResultToAPI(candidate, firstPref, boeleTCP, liberalTCP) {
 }
 
 function clearInput() {
-    let fields = document.getElementsByTagName('input');
-    Array.from(fields).forEach((input) => {
-        input.value = "";
-    });
+    if (confirm('Clear form input?')) {
+        let fields = document.getElementsByTagName('input');
+        Array.from(fields).forEach((input) => {
+            input.value = "";
+        });
+        document.getElementById('boothName').innerHTML = 'Name: ';
+        document.getElementById('boothLocation').innerHTML = 'Location: ';
+    } else {
+        return;
+    }
 }
 
 function pollingPlaceInfo() {

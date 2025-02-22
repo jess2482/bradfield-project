@@ -4,7 +4,6 @@
 */
 
 * {
-    /* background-color: #ffffff; */
     font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
 }
 
@@ -12,13 +11,10 @@
     color: #000000;
     margin: auto;
     margin-top: 3%;
-    display: flex;
-    justify-content: space-between;
 }
 
 body {
     color: #000000;
-    /* margin: auto; */
     margin-left: 5%;
     margin-right: 5%;
 }
@@ -76,11 +72,9 @@ button {
 }
 
 #clearButton {
-    width: 15%;
+    width: 30%;
     height: 5%;
     background-color: #4a4d53;
     border-color: #4a4d53;
-    position: absolute;
-    margin-top: 3%;
-    right: 5%;
+    margin-right: 1%;
 }

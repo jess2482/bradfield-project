@@ -13,7 +13,6 @@
     <body>
         <div class="headerBlock">
             <h1>Scrutineering Form</h1>
-            <button id="clearButton" type="button" onclick="return clearInput()">CLEAR</button>
         </div>
         <div class="booth">
             <label>Booth Code: </label><input id="boothCode" placeholder="Code" type="text" onkeyup="return submitBoothCode()">
@@ -24,6 +23,8 @@
                 <p id="boothLocation">Location: </p>
             </div>
         </div>
+        <br>
+        <button id="clearButton" type="button" onclick="return clearInput()">CLEAR INPUT</button>
         <br>
         <table id="resultInputs">
             <thead>
