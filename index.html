@@ -13,6 +13,7 @@
     <body>
         <div class="headerBlock">
             <h1>Scrutineering Form</h1>
+            <button id="clearButton" type="button" onclick="return clearInput()">CLEAR</button>
         </div>
         <div class="booth">
             <label>Booth Code: </label><input id="boothCode" placeholder="Code" type="text" onkeyup="return submitBoothCode()">
@@ -103,7 +104,7 @@
             </tbody>
         </table>
         <br>
-        <button type="button" onclick="return submitResults()">SUBMIT</button>
+        <button id="submitButton" type="button" onclick="return submitResults()">SUBMIT</button>
         <br>
     </body>
 </html>

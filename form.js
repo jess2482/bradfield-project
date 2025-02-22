@@ -160,7 +160,7 @@ function checkTCPsum(name) {
         alert('Invalid TCP total');
         return false;
     } else if (sum != total) {
-        alert('Incorrect ' + name + ' total votes: ' + sum)
+        alert('Incorrect ' + name + ' TCP total votes: ' + sum)
         return false;
     }
     return true;
@@ -222,8 +222,16 @@ function sendCandidateResultToAPI(candidate, firstPref, boeleTCP, liberalTCP) {
         .catch(error => console.log('error', error))
 }
 
+function clearInput() {
+    let fields = document.getElementsByTagName('input');
+    Array.from(fields).forEach((input) => {
+        input.value = "";
+    });
+}
+
 function pollingPlaceInfo() {
-    return `115,Asquith (Bradfield),Asquith Public School,3 Dudley St
+    return `
+115,Asquith (Bradfield),Asquith Public School,3 Dudley St
 2011,Castle Cove,Castle Cove Public School,2 Kendall Rd
 108401,Central Sydney (Bradfield),TAFE NSW Ultimo Campus,2-10 Mary Ann St
 97589,Central Sydney BRADFIELD PPVC,TAFE NSW Ultimo Campus,2-10 Mary Ann St
