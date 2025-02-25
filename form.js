@@ -144,11 +144,23 @@ function validateForm(results) {
         return false;
     }
     // for each column, TCP values must add to first pref
+    let boeleRow = -1;
+    let liberalRow = -1;
     for (let i = 1; i <= numCandidates; i++) {
+        if (results[i][0].includes('BOELE')) boeleRow = i;
+        if (results[i][0].includes('(LIB)')) liberalRow = i;
         if (results[i][boeleTCPcol] + results[i][liberalTCPcol] != results[i][firstPrefCol]) {
             alert('Both TCP values for each candidate must be filled out and must add to first preference votes')
             return false;
         }
+    }
+    // Boele should have all Boele TCP + Liberal should have all Liberal TCP
+    if (results[boeleRow][boeleTCPcol] != results[boeleRow][firstPrefCol]) {
+        alert('All Boele first preference votes should be allocated to Boele TCP')
+        return false;
+    } else if (results[liberalRow][liberalTCPcol] != results[liberalRow][firstPrefCol]) {
+        alert('All Liberal first preference votes should be allocated to Liberal TCP')
+        return false;
     }
 
     return true;
