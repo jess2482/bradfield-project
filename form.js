@@ -106,12 +106,12 @@ function validateForm(results) {
     }
     let fullTotal = results[totalIndex][firstPrefCol];
     if (fullTotal <= 0 || isNaN(fullTotal)) {
-        alert('Total must be filled out');
+        alert('First preference total must be filled out');
         return false;
     }
     // first prefs must sum to full total
     if (firstPrefSum != fullTotal) {
-        alert('Incorrect vote tally: ' + firstPrefSum);
+        alert('Incorrect first preference total');
         return false;
     }
 
@@ -119,7 +119,7 @@ function validateForm(results) {
     let numInformal = results[informalIndex][firstPrefCol];
     let totalFormal = results[formalIndex][firstPrefCol];
     if (!isNaN(totalFormal) && (firstPrefSum - numInformal) != totalFormal) {
-        alert('Incorrect formal vote tally: ' + (firstPrefSum - numInformal));
+        alert('Incorrect first preference formal vote total');
         return false;
     }
 
@@ -133,20 +133,20 @@ function validateForm(results) {
     let totalBoeleTCP = results[formalIndex][boeleTCPcol];
     let totalLiberalTCP = results[formalIndex][liberalTCPcol];
     if (isNaN(totalBoeleTCP) || isNaN(totalLiberalTCP)) {
-        alert('Invalid TCP total');
+        alert('TCP column totals must be filled out');
         return false;
     } else if ((totalBoeleTCP + totalLiberalTCP) != (fullTotal - numInformal)) {
         console.log(totalBoeleTCP)
         console.log(totalLiberalTCP);
         console.log(totalFormal);
         console.log(numInformal);
-        alert('TCP totals do not add to overall total');
+        alert('TCP column totals do not add to total formal votes');
         return false;
     }
     // for each column, TCP values must add to first pref
     for (let i = 1; i <= numCandidates; i++) {
         if (results[i][boeleTCPcol] + results[i][liberalTCPcol] != results[i][firstPrefCol]) {
-            alert('TCP values for each candidate must add to first preference votes')
+            alert('Both TCP values for each candidate must be filled out and must add to first preference votes')
             return false;
         }
     }
@@ -157,11 +157,8 @@ function validateForm(results) {
 function checkTCPsum(name) {
     let sum = calculateSum(name + 'TCP');
     let total = parseInt(document.getElementById('total' + name + 'TCP').value);
-    if (sum == 0 || isNaN(total)) {
-        alert('Invalid TCP total');
-        return false;
-    } else if (sum != total) {
-        alert('Incorrect ' + name + ' TCP total votes: ' + sum)
+    if (sum == 0 || isNaN(total) || sum != total) {
+        alert('Incorrect ' + name + ' TCP total');
         return false;
     }
     return true;
