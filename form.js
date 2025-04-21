@@ -8,7 +8,7 @@ function submitBoothCode() {
     if (code.length == 0 || validateBoothCode(code) == false) {
         code = 'Not found'
     }
-    document.getElementById('boothName').textContent = 'Name: ' + getBoothInfo(code)[0].toUpperCase();
+    document.getElementById('boothName').textContent = 'Name: ' + getBoothInfo(code)[0];
     document.getElementById('boothLocation').textContent = 'Location: ' + getBoothInfo(code)[1];
 }
 
@@ -18,7 +18,7 @@ function getBoothInfo(code) {
     for (let booth of csv) {
         let info = booth.split(',');
         if (parseInt(info[0]) == id) {
-            return [info[1], info[2]];
+            return [info[1].toUpperCase(), info[2]];
         }
     }
     return ['Not found', 'Not found'];
@@ -46,7 +46,6 @@ function submitResults() {
         return false;
     }
     sendResultsToAPI(resultsTable);
-    alert('Form submitted: ' + document.getElementById('fullTotal').value + ' total votes')
     return true;
 }
 
@@ -224,7 +223,8 @@ function sendCandidateResultToAPI(candidate, firstPref, boeleTCP, liberalTCP) {
 
     fetch("https://mn2e97c7b4.execute-api.ap-southeast-2.amazonaws.com/mobile-form-stage", requestOptions)
         .then(response => response.text())
-        .then(result => alert(JSON.parse(result).body))
+        .then(result => console.log(JSON.parse(result)))
+        .then(() => alert('Form submitted: ' + document.getElementById('fullTotal').value + ' total votes'))
         .catch(error => console.log('error', error))
 }
 
