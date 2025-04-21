@@ -8,7 +8,7 @@ function submitBoothCode() {
     if (code.length == 0 || validateBoothCode(code) == false) {
         code = 'Not found'
     }
-    document.getElementById('boothName').textContent = 'Name: ' + getBoothInfo(code)[0];
+    document.getElementById('boothName').textContent = 'Name: ' + getBoothInfo(code)[0].toUpperCase();
     document.getElementById('boothLocation').textContent = 'Location: ' + getBoothInfo(code)[1];
 }
 
@@ -18,7 +18,7 @@ function getBoothInfo(code) {
     for (let booth of csv) {
         let info = booth.split(',');
         if (parseInt(info[0]) == id) {
-            return [info[2], info[3]];
+            return [info[1], info[2]];
         }
     }
     return ['Not found', 'Not found'];
@@ -136,10 +136,6 @@ function validateForm(results) {
         alert('TCP column totals must be filled out');
         return false;
     } else if ((totalBoeleTCP + totalLiberalTCP) != (fullTotal - numInformal)) {
-        console.log(totalBoeleTCP)
-        console.log(totalLiberalTCP);
-        console.log(totalFormal);
-        console.log(numInformal);
         alert('TCP column totals do not add to total formal votes');
         return false;
     }
@@ -225,8 +221,6 @@ function sendCandidateResultToAPI(candidate, firstPref, boeleTCP, liberalTCP) {
         body: data,
         redirect: 'follow'
     };
-
-    console.log(data);
 
     fetch("https://mn2e97c7b4.execute-api.ap-southeast-2.amazonaws.com/mobile-form-stage", requestOptions)
         .then(response => response.text())
