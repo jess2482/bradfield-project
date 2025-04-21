@@ -46,6 +46,7 @@ function submitResults() {
         return false;
     }
     sendResultsToAPI(resultsTable);
+    alert('Form submitted: ' + document.getElementById('fullTotal').value + ' total votes')
     return true;
 }
 
@@ -224,7 +225,6 @@ function sendCandidateResultToAPI(candidate, firstPref, boeleTCP, liberalTCP) {
     fetch("https://mn2e97c7b4.execute-api.ap-southeast-2.amazonaws.com/mobile-form-stage", requestOptions)
         .then(response => response.text())
         .then(result => console.log(JSON.parse(result)))
-        .then(() => alert('Form submitted: ' + document.getElementById('fullTotal').value + ' total votes'))
         .catch(error => console.log('error', error))
 }
 
