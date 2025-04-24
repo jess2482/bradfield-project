@@ -62,8 +62,8 @@ function createResultsTable() {
     for (let i = 1; i <= numCandidates; i++) {
         candidate = table.rows[i].cells[0].innerHTML;
         firstPref = parseInt(document.getElementById('fp' + i).value);
-        boeleTCP = parseInt(document.getElementById('btcp' + i).value);
-        liberalTCP = parseInt(document.getElementById('ltcp' + i).value);
+        boeleTCP = (candidate.includes('(LIB)')) ? 0 : parseInt(document.getElementById('btcp' + i).value);
+        liberalTCP = (candidate.includes('BOELE')) ? 0 : parseInt(document.getElementById('ltcp' + i).value);
         results[i] = [candidate, firstPref, boeleTCP, liberalTCP];
     }
 
@@ -221,6 +221,8 @@ function sendCandidateResultToAPI(candidate, firstPref, boeleTCP, liberalTCP) {
         body: data,
         redirect: 'follow'
     };
+
+    console.log(data);
 
     fetch("https://mn2e97c7b4.execute-api.ap-southeast-2.amazonaws.com/mobile-form-stage", requestOptions)
         .then(response => response.text())
