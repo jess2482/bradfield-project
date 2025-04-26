@@ -6,13 +6,14 @@
 function submitBoothCode() {
     let code = document.getElementById('boothCode').value;
     if (code.length == 0 || validateBoothCode(code) == false) {
-        code = 'Not found'
+        code = 'Not found';
     }
     document.getElementById('boothName').textContent = 'Name: ' + getBoothInfo(code)[0];
     document.getElementById('boothLocation').textContent = 'Location: ' + getBoothInfo(code)[1];
 }
 
 function getBoothInfo(code) {
+    if (parseInt(code) == 123456) return ['TEST BOOTH', 'Test Booth'];
     let csv = pollingPlaceInfo().split('\n');
     let id = (code ^ 692115) / 13;
     for (let booth of csv) {
@@ -207,6 +208,7 @@ function sendCandidateResultToAPI(candidate, firstPref, boeleTCP, liberalTCP) {
 
     let code = document.getElementById('boothCode').value;
     let id = Math.floor((parseInt(code) ^ 692115) / 13);
+    if (parseInt(code) == 123456) id = 123456;
     let data = JSON.stringify({
         "boothId": id,
         "candidateName": candidate,
