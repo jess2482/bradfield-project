@@ -306,5 +306,12 @@ function pollingPlaceInfo() {
 97589,Ultimo BRADFIELD PPVC,TAFE NSW (Ultimo Campus),651-731 Harris St
 97904,Willoughby BRADFIELD PPVC,Willoughby Uniting Church,10-12 Clanwilliam St
 97606,Wynyard BRADFIELD PPVC,St Stephen's Uniting Church,197 Macquarie St
+8991,ABSENT,Not applicable,Not applicable
+9692,PROVISIONAL,Not applicable,Not applicable
+9493,PRE_POLL,Not applicable,Not applicable
+9974,POSTAL,Not applicable,Not applicable
+8905,Special Hospital Team 1,Not applicable,Not applicable
+9196,Special Hospital Team 2,Not applicable,Not applicable
+9247,Special Hospital Team 3,Not applicable,Not applicable
     `
 }
