@@ -225,10 +225,12 @@ const sendCandidateResultToAPI = async (candidate, firstPref, boeleTCP, liberalT
     };
 
     console.log(data);
-    await fetch("https://mn2e97c7b4.execute-api.ap-southeast-2.amazonaws.com/mobile-form-stage", requestOptions)
-        .then(response => response.text())
-        .then(result => console.log(JSON.parse(result)))
-        .catch(error => console.log('error', error))
+    try {
+        const response = await fetch("https://mn2e97c7b4.execute-api.ap-southeast-2.amazonaws.com/mobile-form-stage", requestOptions);
+        console.log(JSON.parse(response.text()));
+    } catch (err) {
+        console.log(err);
+    }
 }
 
 function clearInput() {
