@@ -147,7 +147,7 @@ function validateForm(results) {
         if (results[i][0].includes('BOELE')) boeleRow = i;
         if (results[i][0].includes('(LIB)')) liberalRow = i;
         if (results[i][boeleTCPcol] + results[i][liberalTCPcol] != results[i][firstPrefCol]) {
-            alert('Both TCP values for each candidate must be filled out and must add to first preference votes')
+            alert('Both TCP values for each row must be filled out and must add to first preference votes')
             return false;
         }
     }
@@ -223,8 +223,6 @@ function sendCandidateResultToAPI(candidate, firstPref, boeleTCP, liberalTCP) {
         body: data,
         redirect: 'follow'
     };
-
-    console.log(data);
 
     fetch("https://mn2e97c7b4.execute-api.ap-southeast-2.amazonaws.com/mobile-form-stage", requestOptions)
         .then(response => response.text())
