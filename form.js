@@ -194,15 +194,15 @@ function includesTCP() {
     return false;
 }
 
-function sendResultsToAPI(results) {
+const sendResultsToAPI = async (results) => {
     let numCandidates = document.getElementsByName('firstPreference').length - 1;
     for (let i = 1; i <= numCandidates + 3; i++) {
         let candidate = results[i][0].replace('<br>', ' ');
-        sendCandidateResultToAPI(candidate, results[i][1], results[i][2], results[i][3]);
+        await sendCandidateResultToAPI(candidate, results[i][1], results[i][2], results[i][3]);
     }
 }
 
-function sendCandidateResultToAPI(candidate, firstPref, boeleTCP, liberalTCP) {
+const sendCandidateResultToAPI = async (candidate, firstPref, boeleTCP, liberalTCP) => {
     let resultsHeader = new Headers();
     resultsHeader.append("Content-Type", "application/json");
 
@@ -224,7 +224,8 @@ function sendCandidateResultToAPI(candidate, firstPref, boeleTCP, liberalTCP) {
         redirect: 'follow'
     };
 
-    fetch("https://mn2e97c7b4.execute-api.ap-southeast-2.amazonaws.com/mobile-form-stage", requestOptions)
+    console.log(data);
+    await fetch("https://mn2e97c7b4.execute-api.ap-southeast-2.amazonaws.com/mobile-form-stage", requestOptions)
         .then(response => response.text())
         .then(result => console.log(JSON.parse(result)))
         .catch(error => console.log('error', error))
