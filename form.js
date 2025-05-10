@@ -316,5 +316,6 @@ function pollingPlaceInfo() {
 8905,Special Hospital Team 1,Not applicable,Not applicable
 9196,Special Hospital Team 2,Not applicable,Not applicable
 9247,Special Hospital Team 3,Not applicable,Not applicable
+8764,EAV,Not applicable,not applicable
     `
 }
